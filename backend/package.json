@@ -1,0 +1,26 @@
+{
+  "name": "bookingfly-backend",
+  "version": "1.0.0",
+  "description": "Backend for BookingFly",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "startdev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Booking",
+    "Flight",
+    "Fly",
+    "Reservation",
+    "Airplane"
+  ],
+  "author": "Nort1346",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
