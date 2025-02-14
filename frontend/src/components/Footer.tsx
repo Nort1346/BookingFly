@@ -1,7 +1,8 @@
 import Image from "next/image";
-import React, { ReactNode } from "react";
+import React from "react";
 
 const Footer: React.FC = () => {
+
   return (
     <footer className="flex justify-between p-10 gap-3">
       <div className="flex flex-col">
@@ -21,7 +22,7 @@ const Footer: React.FC = () => {
         <span>Cos tam</span>
       </div>
       <div className="flex flex-col">
-        <span className="font-bold">O nas</span>
+        <span className="font-bold">Contact</span>
         <span>Cos tam</span>
         <span>Cos tam</span>
         <span>Cos tam</span>

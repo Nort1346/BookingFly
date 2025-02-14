@@ -1,7 +1,10 @@
 version: "3.8"
 services:
   mongodb:
-    image: mongodb:latest
+    image: mongo:latest
     ports:
-      - 27019:27019
+      - 27017:27017
     restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example

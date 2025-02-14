@@ -15,12 +15,14 @@
     "Reservation",
     "Airplane"
   ],
+  "type": "module",
   "author": "Nort1346",
   "license": "MIT",
   "devDependencies": {
     "nodemon": "3.1.9"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongodb": "^6.13.0"
   }
 }

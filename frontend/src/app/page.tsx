@@ -1,9 +1,8 @@
-import Image from "next/image";
-import Navbar from "@/components/Navbar";
-import SearchBar from "@/components/SearchBar";
-import Container from "@/components/Containter";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Navbar from "@components/Navbar";
+import SearchBar from "@components/SearchBar";
+import Container from "@components/Containter";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
 
 const Home: React.FC = () => {
   return (
@@ -11,8 +10,8 @@ const Home: React.FC = () => {
       <Navbar />
       <Header />
       <Container>
-          <SearchBar />
-      <Footer />
+        <SearchBar />
+        <Footer />
       </Container>
     </>
   );

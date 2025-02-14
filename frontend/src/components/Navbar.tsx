@@ -11,6 +11,7 @@ const Navbar: React.FC = () => {
         <div className="space-x-4">
           <Link href="/" className="text-white hover:text-gray-300">Home</Link>
           <Link href="/reservation" className="text-white hover:text-gray-300">Reservation</Link>
+          <Link href="/contact" className="text-white hover:text-gray-300">Contact</Link>
         </div>
       </div>
     </nav>
