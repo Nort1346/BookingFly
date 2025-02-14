@@ -16,7 +16,7 @@ const Header: React.FC = () => {
       <div className="absolute inset-0 bg-black opacity-70"></div>
       <div className="container mx-auto flex flex-col justify-center items-center p-4 relative z-10 text-center h-full">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
-          Mamy najlepszy oferty lotów
+          Mamy najlepsze oferty lotów
         </h1>
         <p className="mb-6 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 xl:px-48">
           Komfort, bezpieczeństwo i niezapomniane podróże. Z nami każda podróż
