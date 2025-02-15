@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 import { IAirline } from "@interfaces/Airline";
 
-const AirlineSchema = new Schema<IAirline>({
+export const AirlineSchema = new Schema<IAirline>({
   name: { type: String, required: true, unique: true },
   code: { type: String, required: true, unique: true }
 });

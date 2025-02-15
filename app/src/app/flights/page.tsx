@@ -1,6 +1,7 @@
 "use client";
 import Container from "@/components/Containter";
 import Navbar from "@/components/Navbar";
+import SearchBar from "@/components/SearchBar";
 import { SearchFlightData } from "@/types/SearchFlightData";
 import { useSearchParams } from "next/navigation";
 import React from "react";
@@ -26,6 +27,7 @@ const Reservation: React.FC = () => {
     <>
       <Navbar sticky />
       <Container>
+        <SearchBar searchFlightData={reservationData} />
         <span>{reservationData?.origin}</span>
       </Container>
     </>

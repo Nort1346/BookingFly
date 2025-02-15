@@ -1,0 +1,1 @@
+export type SeatClass = 'economy' | 'premium' | 'deluxe';

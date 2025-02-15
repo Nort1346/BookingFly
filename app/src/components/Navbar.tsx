@@ -1,20 +1,27 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaMailBulk, FaPlaneDeparture } from 'react-icons/fa';
+import { FaMailBulk, FaPlaneDeparture, FaUser } from "react-icons/fa";
+import LoginModal from "./LoginModal";
 
 const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const OFFSET: number = 40;
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
+      if (
+        window.scrollY > lastScrollY &&
+        window.scrollY > OFFSET
+      ) {
         setVisible(false);
       } else {
         setVisible(true);
       }
-      setLastScrollY(window.scrollY);
+      if (Math.abs(window.scrollY - lastScrollY) >= OFFSET)
+        setLastScrollY(window.scrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -25,7 +32,7 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
     <>
       {sticky && <div className="h-24" />}
       <nav
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[80%] bg-black/50 backdrop-blur-md p-4 shadow-lg rounded-xl z-50 border border-white/20 transition-all duration-500 ease-in-out
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] md:w-[80%] bg-black/50 backdrop-blur-md p-4 shadow-lg rounded-xl z-20 border border-white/20 transition-all duration-500 ease-in-out
         ${
           visible
             ? "translate-y-0 opacity-100"
@@ -49,11 +56,22 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
               className="flex items-center text-white hover:text-gray-300 space-x-2"
             >
               <FaMailBulk />
-              <span>Kontakt</span>
+              <span className="hidden sm:inline">Kontakt</span>
             </Link>
+            <button
+              className="flex items-center text-white hover:text-gray-300 space-x-2"
+              onClick={() => setIsLoginModalOpen(true)}
+            >
+              <FaUser />
+              <span className="hidden sm:inline">Zaloguj się</span>
+            </button>
           </div>
         </div>
       </nav>
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
     </>
   );
 };
