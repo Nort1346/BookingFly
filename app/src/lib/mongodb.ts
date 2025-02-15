@@ -1,17 +1,23 @@
-// lib/mongodb.ts
 import mongoose from "mongoose";
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/bookingfly";
+const MONGODB_URI = process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI) {
   throw new Error("Define MONGODB_URL environment variable!");
 }
 
-const cached: {
+interface MongooseCache {
   conn: mongoose.Connection | null;
   promise: Promise<mongoose.Connection> | null;
-} = { conn: null, promise: null };
+}
+
+const globalCache = global as unknown as { _mongooseCache?: MongooseCache };
+
+if (!globalCache._mongooseCache) {
+  globalCache._mongooseCache = { conn: null, promise: null };
+}
+
+const cached = globalCache._mongooseCache;
 
 /**
  * @author Nort1346

@@ -1,19 +1,12 @@
-import Image from "next/image";
 import React from "react";
+import { FaPlane } from "react-icons/fa";
 
 const Footer: React.FC = () => {
 
   return (
-    <footer className="flex justify-between p-10 gap-3">
-      <div className="flex flex-col">
-        <Image
-          src="/assets/logo.webp"
-          width="100"
-          height="100"
-          alt="logo"
-          objectFit="cover"
-          className="rounded-lg"
-        />
+    <footer className="flex justify-between p-10 my-15 gap-3">
+      <div className="flex flex-col align-middle justify-center">
+        <FaPlane className="w-20 h-20" />
       </div>
       <div className="flex flex-col">
         <span className="font-bold">O nas</span>

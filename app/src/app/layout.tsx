@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../style/globals.css";
 import { connect } from "@lib/mongodb";
 
-await connect();
+connect();
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Booking Fly",
+  title: "BookingFly",
   description: "An application for booking flights",
 };
 

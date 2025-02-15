@@ -6,7 +6,7 @@ import React from "react";
 const Form: React.FC = () => {
   return (
     <>
-      <Navbar />
+      <Navbar sticky />
       <Container>
         <h1>Formularz kontaktowy</h1>
       </Container>

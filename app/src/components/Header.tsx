@@ -8,10 +8,9 @@ const Header: React.FC = () => {
       <Image
         src="/assets/planeImage.jpg"
         alt="Plane Image"
-        layout="fill"
-        objectFit="cover"
+        fill
         quality={100}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 object-cover"
       />
       <div className="absolute inset-0 bg-black opacity-70"></div>
       <div className="container mx-auto flex flex-col justify-center items-center p-4 relative z-10 text-center h-full">
@@ -24,7 +23,7 @@ const Header: React.FC = () => {
         </p>
         <Link
           className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-          href="/reservation"
+          href="/flights"
         >
           Zobacz nasze oferty
           <svg
