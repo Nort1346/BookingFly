@@ -1,4 +1,5 @@
-export interface IFlight {
+import { Document } from "mongoose";
+export interface IFlight extends Document {
   flightId: string;
   airline: string;
   origin: string;

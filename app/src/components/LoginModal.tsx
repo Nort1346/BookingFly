@@ -29,7 +29,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         }`}
     >
       <div
-        className={`backdrop-blur-lg bg-gray p-6 rounded-lg drop-shadow-lg w-96 transition-all duration-500 ease-out ${
+        className={`backdrop-blur-md bg-black/50 p-6 rounded-lg w-96 transition-all duration-500 ease-out ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
       >

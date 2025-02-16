@@ -5,26 +5,32 @@ import { z } from "zod";
 import { generateFlightId } from "@/utils/generateFlightId";
 import { connect } from "@/lib/mongodb";
 import getFlightsValidator from "@/validators/getFlightsValidator";
+import { FlightSearchCriteria } from "@/interfaces/FlightSearchCriteria";
 
 export async function GET(request: NextRequest) {
   try {
     await connect();
     const searchParams = request.nextUrl.searchParams;
 
-    const validatedData = getFlightsValidator.parse({
+    const { origin, destination, departureDate } = getFlightsValidator.parse({
       origin: searchParams.get("origin") || undefined,
       destination: searchParams.get("destination") || undefined,
       departureDate: searchParams.get("departureDate") || undefined,
     });
 
-    console.log(validatedData);
-    const cleanedCriteria = Object.fromEntries(
-      Object.entries(validatedData || {}).filter(
-        ([, value]) => value !== undefined
-      )
-    );
+    const cleanedCriteria: FlightSearchCriteria = {};
 
-    console.log(cleanedCriteria);
+    if (origin) cleanedCriteria.origin = origin;
+    if (destination) cleanedCriteria.destination = destination;
+
+    if (departureDate) {
+      const startOfDay = new Date(departureDate);
+      startOfDay.setHours(0, 0, 0, 0);
+      const endOfDay = new Date(departureDate);
+      endOfDay.setHours(23, 59, 59, 999);
+
+      cleanedCriteria.departureTime = { $gte: startOfDay, $lte: endOfDay };
+    }
 
     const flights = await Flight.find(cleanedCriteria).limit(50);
     return NextResponse.json(flights);
