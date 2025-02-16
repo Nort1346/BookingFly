@@ -6,7 +6,8 @@ import { connect } from "@/lib/mongodb";
 export async function GET(req: Request) {
   await connect();
 
-  const token = req.headers.get("cookie")?.split("=")[1];
+  const token = req.headers.get("cookie")?.split("; ")
+  .find(cookie => cookie.startsWith("token="))?.split("=")[1];
   if (!token) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server';
 
 export async function middleware() {
-  return NextResponse.next();
+  const res = NextResponse.next();
+
+  res.headers.set("Access-Control-Allow-Credentials", "true");
+  res.headers.set("Access-Control-Allow-Origin", "*");
+
+  return res;
 }
 
 export const config = {

@@ -7,6 +7,7 @@ import { z } from "zod";
 import jwt from "jsonwebtoken";
 import Session from "@/models/Session";
 import { IUser } from "@/interfaces/User";
+import { cookies } from "next/headers";
 
 export async function POST(request: Request) {
   try {
@@ -51,8 +52,11 @@ export async function POST(request: Request) {
     });
 
     const response = NextResponse.json({ message: "Logged in successfully" });
-    response.cookies.set("token", token, {
+
+    const cookieStore = await cookies();
+    cookieStore.set("token", token, {
       httpOnly: true,
+      sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60,
     });
 
