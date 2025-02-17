@@ -1,6 +1,5 @@
-import { Document } from "mongoose";
-
-export interface IAirline extends Document {
-  name: string;
-  code: string;
-}
+export interface Airline {
+    name: string;
+    code: string;
+    logo: string;
+  }

@@ -1,5 +1,5 @@
 import { Schema, model, models } from "mongoose";
-import { IContact } from "@/interfaces/Contact";
+import { IContact } from "@/interfaces/Contact.model";
 
 export const ContactSchema = new Schema<IContact>({
   email: { type: String, required: true, unique: false },

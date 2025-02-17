@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
 import Session from "@/models/Session";
-import { IUser } from "@/interfaces/User";
+import { IUser } from "@/interfaces/User.model";
 import { cookies } from "next/headers";
 
 export async function POST(request: Request) {

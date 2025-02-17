@@ -1,5 +1,5 @@
 import { Document } from "mongoose";
-import { IFlightHistory } from "./FlightHistory";
+import { IFlightHistory } from "./FlightHistory.model";
 
 export interface IUser extends Document {
   name: string;

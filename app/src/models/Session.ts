@@ -1,4 +1,4 @@
-import { ISession } from "@/interfaces/Session";
+import { ISession } from "@/interfaces/Session.model";
 import { model, models, Schema } from "mongoose";
 import User from "./User";
 

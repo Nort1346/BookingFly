@@ -1,5 +1,5 @@
 import { Schema, model, models } from "mongoose";
-import { IFlight } from "@interfaces/Flight";
+import { IFlight } from "@/interfaces/Flight.model";
 
 export const FlightSchema = new Schema<IFlight>({
   flightId: { type: String, required: true, unique: true },

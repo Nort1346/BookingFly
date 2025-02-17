@@ -1,5 +1,5 @@
 import { Schema, model, models } from "mongoose";
-import { IFlightHistory } from "@/interfaces/FlightHistory";
+import { IFlightHistory } from "@/interfaces/FlightHistory.model";
 
 export const FlightHistorySchema = new Schema<IFlightHistory>({
   flightId: { type: String, required: true },
