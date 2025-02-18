@@ -5,7 +5,10 @@ import React from "react";
 import { FaPlane } from "react-icons/fa";
 import { TbPoint } from "react-icons/tb";
 
-const FlightItem: React.FC<{ flightData: FlightData }> = ({ flightData }) => {
+const FlightItem: React.FC<{
+  flightData: FlightData;
+  onReserveClick: () => void;
+}> = ({ flightData, onReserveClick }) => {
   const departureDate = new Date(flightData.departureTime);
   const departureTime = `${departureDate
     .getHours()
@@ -58,7 +61,12 @@ const FlightItem: React.FC<{ flightData: FlightData }> = ({ flightData }) => {
       </div>
 
       <div className="w-full md:w-1/5 md:my-0 my-6 flex justify-center">
-        <button className="btn">Rezerwuj od <strong>{flightData.economyClass.economy.price} {flightData.currency}</strong></button>
+        <button className="btn" onClick={onReserveClick}>
+          Rezerwuj od{" "}
+          <strong>
+            {flightData.economyClass.economy.price} {flightData.currency}
+          </strong>
+        </button>
       </div>
     </div>
   );

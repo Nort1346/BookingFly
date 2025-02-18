@@ -6,31 +6,32 @@ import React, { useEffect, useRef } from "react";
 const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
   searchFlightData,
 }) => {
-  const originRef: React.RefObject<HTMLInputElement | null> = useRef(null);
-  const destinationRef: React.RefObject<HTMLInputElement | null> = useRef(null);
+  const originRef: React.RefObject<HTMLSelectElement | null> = useRef(null);
+  const destinationRef: React.RefObject<HTMLSelectElement | null> =
+    useRef(null);
   const departureDateRef: React.RefObject<HTMLInputElement | null> =
     useRef(null);
   const router = useRouter();
 
   useEffect(() => {
-      if (originRef.current)
-        originRef.current.value = searchFlightData?.origin || "";
-      if (destinationRef.current)
-        destinationRef.current.value = searchFlightData?.destination || "";
-      if (departureDateRef.current) {
-        const formattedDate = searchFlightData?.departureDate
-          ? new Date(searchFlightData.departureDate).toISOString().split("T")[0]
-          : new Date(Date.now()).toISOString().split("T")[0];
-        departureDateRef.current.value = formattedDate;
-      }
+    if (originRef.current)
+      originRef.current.value = searchFlightData?.origin || "";
+    if (destinationRef.current)
+      destinationRef.current.value = searchFlightData?.destination || "";
+    if (departureDateRef.current) {
+      const formattedDate = searchFlightData?.departureDate
+        ? new Date(searchFlightData.departureDate).toISOString().split("T")[0]
+        : new Date(Date.now()).toISOString().split("T")[0];
+      departureDateRef.current.value = formattedDate;
+    }
   }, [searchFlightData]);
 
   const redirectToFlights = () => {
-    const origin = originRef.current?.value;
+    const origin = originRef.current?.value ?? "";
     const destination = destinationRef.current?.value ?? "";
     const departureDate = departureDateRef.current?.value ?? "";
 
-    if (!origin || !destination || !departureDate) return;
+    if (!departureDate) return;
 
     const queryParams = new URLSearchParams({
       origin: origin,
@@ -40,6 +41,11 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
 
     router.push(`/flights?${queryParams.toString()}`);
   };
+
+  const options = [
+    { value: "New York", label: "New York" },
+    { value: "London", label: "London" },
+  ];
 
   return (
     <>
@@ -54,12 +60,21 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
           >
             Z:
           </label>
-          <input
-            type="text"
+          <select
             ref={originRef}
             name="origin"
+            defaultValue={""}
             className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-          />
+          >
+            <option value="" disabled>
+              Wybierz miasto
+            </option>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="flex flex-col">
@@ -69,12 +84,21 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
           >
             Do:
           </label>
-          <input
-            type="text"
+          <select
             ref={destinationRef}
             name="destination"
+            defaultValue={""}
             className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-          />
+          >
+            <option value="" disabled>
+              Wybierz miasto
+            </option>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="flex flex-col">

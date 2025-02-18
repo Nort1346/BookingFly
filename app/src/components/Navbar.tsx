@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaMailBulk, FaPlaneDeparture, FaUser } from "react-icons/fa";
+import { FaGamepad, FaMailBulk, FaPlaneDeparture, FaUser } from "react-icons/fa";
 import LoginModal from "./LoginModal";
 import { useAuthContext } from "@/context/AuthContext";
 import UserDropdown from "./UserDropdown";
@@ -49,7 +49,7 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
               className="flex items-center text-white hover:text-gray-300 space-x-2"
             >
               <FaPlaneDeparture />
-              <span>Loty</span>
+              <span className="hidden sm:inline">Loty</span>
             </Link>
             <Link
               href="/contact"
@@ -57,6 +57,13 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
             >
               <FaMailBulk />
               <span className="hidden sm:inline">Kontakt</span>
+            </Link>
+            <Link
+              href="/game"
+              className="flex items-center text-white hover:text-gray-300 space-x-2"
+            >
+              <FaGamepad />
+              <span className="hidden sm:inline">Gra</span>
             </Link>
             <button
               className={`${

@@ -1,9 +1,9 @@
 "use client";
 import { useAuthContext } from "@/context/AuthContext";
-import { LoginModalProps } from "@/interfaces/LoginModalProps";
+import { ModalProps } from "@/interfaces/ModalProps";
 import { useEffect, useState } from "react";
 
-const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
+const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [visible, setVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(isOpen);
   const [email, setEmail] = useState("");
@@ -57,7 +57,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm transition-opacity duration-500 ease-out 
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/0 backdrop-blur-sm transition-opacity duration-500 ease-out 
         ${
           visible
             ? "opacity-100 pointer-events-auto"
@@ -65,7 +65,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         }`}
     >
       <div
-        className={`backdrop-blur-md bg-black/50 p-6 rounded-lg w-96 transition-all duration-500 ease-out ${
+        className={`backdrop-blur-md bg-neutral-900 shadow-lg border border-neutral-700 p-6 rounded-lg w-96 transition-all duration-500 ease-out ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
@@ -109,7 +109,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         </button>
         <button
           onClick={onClose}
-          className="mt-4 w-full text-sm text-gray-500 hover:text-gray-700"
+          className="mt-4 w-full text-sm text-white hover:text-gray-500"
         >
           Zamknij
         </button>

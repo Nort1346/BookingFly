@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import LoadingCircle from "@/components/LoadingCircle";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
+import TariffModal from "@/components/TariffModal";
 import { FlightData } from "@/interfaces/FlightData";
 import { SearchFlightData } from "@/types/SearchFlightData";
 import { useSearchParams } from "next/navigation";
@@ -12,6 +13,10 @@ import React, { useEffect, useMemo, useState } from "react";
 
 const Reservation: React.FC = () => {
   const params = useSearchParams();
+  const [tariffModal, setTariffModal] = useState<{
+    isOpen: boolean;
+    flightData: FlightData | null;
+  }>({ isOpen: false, flightData: null });
 
   const destination = params.get("destination");
   const origin = params.get("origin");
@@ -45,11 +50,17 @@ const Reservation: React.FC = () => {
       });
       const data = await response?.json();
       if (data) setFlights(data);
-      console.log(data as FlightData[]);
     };
 
     fetchFlights();
   }, [reservationData]);
+
+  const setTariff = (flightData: FlightData) => {
+    setTariffModal({
+      flightData: flightData,
+      isOpen: true,
+    });
+  };
 
   return (
     <>
@@ -58,17 +69,27 @@ const Reservation: React.FC = () => {
         <SearchBar searchFlightData={reservationData} />
         <LoadingCircle visible={flights == null} />
         <div>
-          {flights?.map((flight: FlightData) => (
-            <FlightItem key={flight.flightId} flightData={flight} />
-          ))}
-          {flights?.length === 0 && (
+          {flights?.length === 0 ? (
             <p className="flex justify-center text-2xl font-bold h-80 items-center">
               Nie znaleziono lotów 🫤
             </p>
+          ) : (
+            flights?.map((flight: FlightData) => (
+              <FlightItem
+                key={flight.flightId}
+                flightData={flight}
+                onReserveClick={() => setTariff(flight)}
+              />
+            ))
           )}
         </div>
         <Footer />
       </Container>
+      <TariffModal
+        isOpen={tariffModal.isOpen}
+        onClose={() => setTariffModal((prev) => ({ ...prev, isOpen: false }))}
+        flightData={tariffModal.flightData}
+      />
     </>
   );
 };

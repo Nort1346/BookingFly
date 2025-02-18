@@ -1,5 +1,6 @@
-"use client"
+"use client";
 import Container from "@/components/Containter";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import React from "react";
 
@@ -9,6 +10,7 @@ const Form: React.FC = () => {
       <Navbar sticky />
       <Container>
         <h1>Formularz kontaktowy</h1>
+        <Footer />
       </Container>
     </>
   );
