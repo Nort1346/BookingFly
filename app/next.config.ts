@@ -2,8 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  serverExternalPackages: ['mongoose'],
-  output: 'standalone',
+  serverExternalPackages: ['mongoose']
 };
 
 export default nextConfig;

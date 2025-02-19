@@ -50,13 +50,13 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
   return (
     <>
       <div className="space-y-4 my-8">
-        <h2 className="font-extrabold text-xl flex justify-center">
+        <h2 className="font-extrabold text-xl text-white flex justify-center">
           Szukaj Lotów
         </h2>
         <div className="flex flex-col">
           <label
             htmlFor="fromDestination"
-            className="mb-2 font-medium text-gray-700 dark:text-gray-300"
+            className="mb-2 font-medium text-gray-300"
           >
             Z:
           </label>
@@ -64,7 +64,7 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
             ref={originRef}
             name="origin"
             defaultValue={""}
-            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            className="py-3 px-4 block w-full shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-neutral-800 border-neutral-700 text-neutral-400 placeholder-neutral-500 focus:ring-neutral-600"
           >
             <option value="" disabled>
               Wybierz miasto
@@ -80,7 +80,7 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
         <div className="flex flex-col">
           <label
             htmlFor="toDestination"
-            className="mb-2 font-medium text-gray-700 dark:text-gray-300"
+            className="mb-2 font-medium text-gray-300"
           >
             Do:
           </label>
@@ -88,7 +88,7 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
             ref={destinationRef}
             name="destination"
             defaultValue={""}
-            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            className="py-3 px-4 block w-fullshadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-neutral-800 border-neutral-700 text-neutral-400 placeholder-neutral-500 focus:ring-neutral-600"
           >
             <option value="" disabled>
               Wybierz miasto
@@ -102,17 +102,14 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
         </div>
 
         <div className="flex flex-col">
-          <label
-            htmlFor="startDate"
-            className="mb-2 font-medium text-gray-700 dark:text-gray-300"
-          >
+          <label htmlFor="startDate" className="mb-2 font-medium text-gray-300">
             Wylot:
           </label>
           <input
             type="date"
             ref={departureDateRef}
             name="startDate"
-            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            className="py-3 px-4 block w-full shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-neutral-800 border-neutral-700 text-neutral-400 placeholder-neutral-500 focus:ring-neutral-600"
           />
         </div>
         <button className="btn" onClick={redirectToFlights}>

@@ -35,15 +35,15 @@ const FlightClassCard: React.FC<{
   };
 
   return (
-    <div className="border border-gray-300 shadow-md rounded-lg p-6 w-80 bg-white dark:bg-neutral-900 dark:border-neutral-700">
-      <div className="text-lg font-semibold text-gray-900 dark:text-white">
+    <div className="block border shadow-md w-full h-full rounded-lg p-6 bg-neutral-900 border-neutral-700">
+      <div className="text-lg font-semibold text-white">
         {toTitleCase(seatClass)}
       </div>
 
       <div className={`${priceStyle} mt-4 text-xl font-bold`}>
         {flightData?.economyClass[seatClass].price} {flightData?.currency}
       </div>
-      <div className="text-xs text-gray-500 dark:text-gray-400">na osobę</div>
+      <div className="text-xs text-gray-400">na osobę</div>
 
       <button
         className={`mt-6 w-full text-white font-semibold py-2 rounded-lg transition ${buttonStyle}`}

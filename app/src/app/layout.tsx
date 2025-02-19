@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../style/globals.css";
 import { connect } from "@lib/mongodb";
 import { AuthProvider } from "@/context/AuthContext";
+import LoadingCircle from "@/components/LoadingCircle";
+import { Suspense } from "react";
 
 connect();
 const geistSans = Geist({
@@ -26,11 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scrollbar-dark dark`}>
+    <html lang="en" className={`scrollbar-dark dark`} data-theme="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black text-white`}
       >
-        <AuthProvider>{children}</AuthProvider>
+        <Suspense fallback={<LoadingCircle visible={true} />}>
+          <AuthProvider>{children}</AuthProvider>
+        </Suspense>
       </body>
     </html>
   );

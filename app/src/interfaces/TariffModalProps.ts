@@ -1,4 +1,4 @@
-import { FlightData } from "next/dist/server/app-render/types";
+import { FlightData } from "./FlightData";
 import { ModalProps } from "./ModalProps";
 
 export interface TariffModalProps extends ModalProps {

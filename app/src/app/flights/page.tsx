@@ -11,7 +11,7 @@ import { SearchFlightData } from "@/types/SearchFlightData";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 
-const Reservation: React.FC = () => {
+const Flights: React.FC = () => {
   const params = useSearchParams();
   const [tariffModal, setTariffModal] = useState<{
     isOpen: boolean;
@@ -94,4 +94,4 @@ const Reservation: React.FC = () => {
   );
 };
 
-export default Reservation;
+export default Flights;
