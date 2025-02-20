@@ -1,8 +1,8 @@
 import { Schema, model, models } from "mongoose";
 import { IUser } from "@/interfaces/User.model";
-import { FlightHistorySchema } from "./FlightHIstory";
+import { FlightHistorySchema } from "./FlightHistory";
 
-const UserSchema = new Schema<IUser>({
+export const UserSchema = new Schema<IUser>({
   name: { type: String, required: true, unique: false },
   surname: { type: String, required: true, unique: false },
   password: { type: String, required: true, unique: false },

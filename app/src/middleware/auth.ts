@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
-import Session from "@/models/Session";
 import jwt from "jsonwebtoken";
+import Session from "@/models/Session";
 import { connect } from "@/lib/mongodb";
 
-export async function GET(req: Request) {
+export async function authMiddleware(req: Request) {
   await connect();
 
   const cookie = req.headers.get("cookie");
   if (!cookie) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+    });
   }
 
   const token = cookie
@@ -17,7 +19,9 @@ export async function GET(req: Request) {
     ?.split("=")[1];
 
   if (!token) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+    });
   }
 
   try {
@@ -29,12 +33,16 @@ export async function GET(req: Request) {
     );
 
     if (!session || session.expiresAt.getTime() < Date.now()) {
-      return NextResponse.json({ error: "Session expired" }, { status: 401 });
+      return new Response(JSON.stringify({ error: "Session expired" }), {
+        status: 401,
+      });
     }
 
-    return NextResponse.json(session.userId);
+    return session.userId;
   } catch (error) {
     console.error("JWT error:", error);
-    return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    return new Response(JSON.stringify({ error: "Invalid token" }), {
+      status: 401,
+    });
   }
 }
