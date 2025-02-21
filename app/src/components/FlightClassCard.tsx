@@ -31,6 +31,7 @@ const FlightClassCard: React.FC<{
     if (!flightData?.flightId) return;
     const searchParams = new URLSearchParams();
     searchParams.append("seatClass", seatClass);
+    document.body.classList.remove("overflow-hidden");
     route.push(`/checkout/${flightData.flightId}?${searchParams}`);
   };
 
