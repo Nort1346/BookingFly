@@ -1,4 +1,5 @@
 import { useAuthContext } from "@/context/AuthContext";
+import Link from "next/link";
 import { useState } from "react";
 import { FaHistory, FaUser } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
@@ -27,13 +28,13 @@ function UserDropdown() {
         <div className="absolute rounded-xl right-0 mt-2 w-48 bg-black/50 backdrop-blur-md border border-white/20 shadow-lg">
           <ul>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/flightHistory"
                 className="flex items-center space-x-2 px-4 py-2 text-white-700 rounded-xl hover:bg-neutral-700/50"
               >
                 <FaHistory />
                 <span>Historia lotów</span>
-              </a>
+              </Link>
             </li>
             <li>
               <a
