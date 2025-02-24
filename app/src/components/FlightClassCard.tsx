@@ -1,3 +1,5 @@
+import { useAuthContext } from "@/context/AuthContext";
+import { useLoginModal } from "@/context/LoginModalContext";
 import { FlightData } from "@/interfaces/FlightData";
 import { SeatClass } from "@/types/SeatClass";
 import { toTitleCase } from "@/utils/toTitleCase";
@@ -9,6 +11,8 @@ const FlightClassCard: React.FC<{
   seatClass: SeatClass;
 }> = ({ flightData, seatClass }) => {
   const route = useRouter();
+  const { user } = useAuthContext();
+  const { showModal } = useLoginModal();
   let buttonStyle: string;
   let priceStyle: string;
 
@@ -28,6 +32,7 @@ const FlightClassCard: React.FC<{
   }
 
   const redirectToCheckout = () => {
+    if (!user) return showModal();
     if (!flightData?.flightId) return;
     const searchParams = new URLSearchParams();
     searchParams.append("seatClass", seatClass);

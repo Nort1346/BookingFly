@@ -7,6 +7,9 @@ const Game: React.FC = () => {
   return (
     <>
       <Navbar sticky />
+      <Container>
+        <h1 className="text-center font-extrabold text-3xl my-6">Gra Flappy Plane</h1>
+      </Container>
       <div className="w-full h-screen m-0 sm:mx-auto max-w-[900px] max-h-[700px] my-14">
         <iframe
           src={process.env.GAME_URI}

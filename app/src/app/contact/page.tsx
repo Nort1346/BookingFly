@@ -9,7 +9,7 @@ const Form: React.FC = () => {
     <>
       <Navbar sticky />
       <Container>
-        <h1>Formularz kontaktowy</h1>
+        <h1 className="text-center font-extrabold text-3xl my-6">Formularz kontaktowy</h1>
         <Footer />
       </Container>
     </>

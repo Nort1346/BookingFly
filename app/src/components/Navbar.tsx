@@ -1,15 +1,20 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaGamepad, FaMailBulk, FaPlaneDeparture, FaUser } from "react-icons/fa";
-import LoginModal from "./LoginModal";
+import {
+  FaGamepad,
+  FaMailBulk,
+  FaPlaneDeparture,
+  FaUser,
+} from "react-icons/fa";
 import { useAuthContext } from "@/context/AuthContext";
 import UserDropdown from "./UserDropdown";
+import { useLoginModal } from "@/context/LoginModalContext";
 
 const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { showModal } = useLoginModal();
   const { user } = useAuthContext();
   const OFFSET: number = 40;
 
@@ -69,7 +74,7 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
               className={`${
                 !user ? "flex" : "hidden"
               } items-center text-white hover:text-gray-300 space-x-2`}
-              onClick={() => setIsLoginModalOpen(true)}
+              onClick={showModal}
             >
               <FaUser />
               <span className="hidden sm:inline">Zaloguj się</span>
@@ -78,10 +83,6 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
           </div>
         </div>
       </nav>
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-      />
     </>
   );
 };

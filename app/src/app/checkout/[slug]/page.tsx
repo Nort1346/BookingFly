@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,11 +10,14 @@ import { SeatClass } from "@/types/SeatClass";
 import { toTitleCase } from "@/utils/toTitleCase";
 import LoadingCircle from "@/components/LoadingCircle";
 import { useAuthContext } from "@/context/AuthContext";
+import { useMessageModal } from "@/context/MessageModalContext";
+import { MessageModalType } from "@/enums/MessageModalType";
 
 const Checkout: React.FC = () => {
   const [flight, setFlight] = useState<FlightData | null>(null);
-  const { user, loading } = useAuthContext();
   const [seatClass, setSeatClass] = useState<string>("economy");
+  const { user, loading } = useAuthContext();
+  const { showModal } = useMessageModal();
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
@@ -33,6 +36,12 @@ const Checkout: React.FC = () => {
 
     if (request.status == 200) {
       router.push("/");
+    } else {
+      showModal(
+        MessageModalType.DANGER,
+        "Nie można zarezerwować lotu!",
+        "Już rezerwowałeś ten lot!"
+      );
     }
   };
 

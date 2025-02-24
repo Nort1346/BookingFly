@@ -50,7 +50,7 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
   return (
     <>
       <div className="space-y-4 my-8">
-        <h2 className="font-extrabold text-xl text-white flex justify-center">
+        <h2 className="font-extrabold text-3xl text-white flex justify-center">
           Szukaj Lotów
         </h2>
         <div className="flex flex-col">

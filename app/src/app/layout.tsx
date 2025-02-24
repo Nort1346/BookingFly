@@ -5,6 +5,8 @@ import { connect } from "@lib/mongodb";
 import { AuthProvider } from "@/context/AuthContext";
 import LoadingCircle from "@/components/LoadingCircle";
 import { Suspense } from "react";
+import { LoginModalProvider } from "@/context/LoginModalContext";
+import { MessageModalProvider } from "@/context/MessageModalContext";
 
 connect();
 const geistSans = Geist({
@@ -33,7 +35,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black text-white`}
       >
         <Suspense fallback={<LoadingCircle visible={true} />}>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <LoginModalProvider>
+              <MessageModalProvider>{children}</MessageModalProvider>
+            </LoginModalProvider>
+          </AuthProvider>
         </Suspense>
       </body>
     </html>

@@ -22,7 +22,11 @@ body {
 
 @layer components {
   .btn {
-    @apply px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-900;
+    @apply px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-2 focus:ring-blue-900 transition-colors ease-in-out duration-300;
+  }
+
+  .btn-danger {
+    @apply px-5 py-3 text-base font-medium text-center text-white bg-red-800 rounded-lg hover:bg-red-900 focus:ring-2 focus:ring-red-500 transition-colors ease-in-out duration-300;
   }
 
   .input {
