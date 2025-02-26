@@ -6,5 +6,5 @@ export interface IUser extends Document {
   surname: string;
   password: string;
   email: string;
-  flightHistory?: IFlightHistory[];
+  flightHistory: IFlightHistory[];
 }

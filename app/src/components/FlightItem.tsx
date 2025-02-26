@@ -27,7 +27,7 @@ const FlightItem: React.FC<{
   return (
     <div className="flex w-full items-center bg-neutral-500/20 p-4 rounded h-auto md:h-40 md:flex-row flex-col mb-3">
       <div className="w-1/5 md:my-0 my-6 flex justify-center">
-        <div className="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center">
+        <div className="flex-shrink-0 w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
           <Image
             src={findAirlineLogo(flightData.airline) as string}
             width={300}

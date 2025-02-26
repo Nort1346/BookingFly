@@ -1,10 +1,10 @@
-import { Airlines } from "@/constants/airlines";
+import AirlinesEnum from "@/enums/Airlines";
 import { Airline } from "@/interfaces/Airline";
 
 const airlines: Airline[] = [
-  { name: Airlines.NORT_FLY, code: "NFY", logo: "/assets/NortFly.webp" },
-  { name: Airlines.SUPERMANN, code: "SMN", logo: "/assets/SUPERMANN.webp" },
-  { name: Airlines.LOT, code: "LOT", logo: "/assets/LOT.jpg" },
+  { name: AirlinesEnum.NORT_FLY, code: "NFY", logo: "/assets/NortFly.webp" },
+  { name: AirlinesEnum.SUPERMANN, code: "SMN", logo: "/assets/SUPERMANN.webp" },
+  { name: AirlinesEnum.LOT, code: "LOT", logo: "/assets/LOT.jpg" },
 ];
 
 export const findAirlineLogo = (name: string): string | undefined =>

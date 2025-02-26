@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoadingCircle: React.FC<{ visible: boolean }> = ({ visible }) => {
+const LoadingCircle: React.FC<{ visible?: boolean }> = ({ visible = true }) => {
   return (
     <div className={`${visible ? "flex" : "hidden"} justify-center items-center h-80`}>
       <svg

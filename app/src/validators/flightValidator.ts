@@ -1,4 +1,4 @@
-import { Airlines } from "@/constants/airlines";
+import Airlines from "@/enums/Airlines";
 import { z } from "zod";
 
 const flightValidator = z.object({

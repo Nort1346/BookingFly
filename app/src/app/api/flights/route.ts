@@ -6,6 +6,7 @@ import { generateFlightId } from "@/utils/generateFlightId";
 import { connect } from "@/lib/mongodb";
 import getFlightsValidator from "@/validators/getFlightsValidator";
 import { FlightSearchCriteria } from "@/interfaces/FlightSearchCriteria";
+import checkToken from "@/utils/checkToken";
 
 export async function GET(request: NextRequest) {
   try {
@@ -30,6 +31,9 @@ export async function GET(request: NextRequest) {
       endOfDay.setHours(23, 59, 59, 999);
 
       cleanedCriteria.departureTime = { $gte: startOfDay, $lte: endOfDay };
+    } else {
+      const nowDate = new Date();
+      cleanedCriteria.departureTime = { $gt: nowDate };
     }
 
     const flights = await Flight.find(cleanedCriteria).limit(50);
@@ -48,6 +52,20 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: Request) {
   try {
+    const authHeader = request.headers.get("authorization");
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return NextResponse.json(
+        { error: "Missing authorization token" },
+        { status: 401 }
+      );
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    if (!checkToken(token)) {
+      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    }
+
     await connect();
     const data = await request?.json().catch(() => {});
 

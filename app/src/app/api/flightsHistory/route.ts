@@ -12,17 +12,30 @@ export async function GET(request: Request) {
   try {
     const updatedFlightHistory = await Promise.all(
       user.flightHistory.map(async (flightHistory) => {
-        const flight = await Flight.findOne({
+        const flight = await Flight.findOne(
+          {
+            flightId: flightHistory.flightId,
+          },
+          {
+            flightId: 1,
+            airline: 1,
+            origin: 1,
+            destination: 1,
+            departureTime: 1,
+            arrivalTime: 1,
+            currency: 1,
+            economyClass: 1,
+          }
+        ).lean();
+        return {
           flightId: flightHistory.flightId,
-        });
-        if (flight) {
-          flightHistory.flightDetails = flight;
-        }
-        return flightHistory;
+          seatClass: flightHistory.seatClass,
+          seats: flightHistory.seats,
+          flightDetails: flight || null,
+        };
       })
     );
 
-    //flightDetails no visible, to fix
     return NextResponse.json(updatedFlightHistory, { status: 200 });
   } catch {
     return NextResponse.json(

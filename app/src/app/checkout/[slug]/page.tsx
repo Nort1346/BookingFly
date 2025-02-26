@@ -36,6 +36,13 @@ const Checkout: React.FC = () => {
 
     if (request.status == 200) {
       router.push("/");
+      showModal(
+        MessageModalType.MESSAGE,
+        "Lot Zarezerwowany!",
+        `Zazerwowałeś lot ${data.flightId}, klasa ${toTitleCase(
+          data.seatClass
+        )}, ilość siedzeń ${data.seats}`
+      );
     } else {
       showModal(
         MessageModalType.DANGER,
