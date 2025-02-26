@@ -2,6 +2,15 @@
   "name": "bookingfly",
   "version": "0.1.0",
   "private": true,
+  "authors": [
+    {
+      "name": "Norbert Baczuń",
+      "url": "https://nortbot.info"
+    },
+    {
+      "name": "Miłosz Dudek"
+    }
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
