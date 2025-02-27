@@ -15,7 +15,7 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
   const [visible, setVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const { showModal } = useLoginModal();
-  const { user } = useAuthContext();
+  const { user, loading } = useAuthContext();
   const OFFSET: number = 40;
 
   useEffect(() => {
@@ -74,10 +74,16 @@ const Navbar: React.FC<{ sticky?: boolean }> = ({ sticky = false }) => {
               className={`${
                 !user ? "flex" : "hidden"
               } items-center text-white hover:text-gray-300 space-x-2`}
-              onClick={showModal}
+              onClick={() => !user && !loading && showModal()}
             >
               <FaUser />
-              <span className="hidden sm:inline">Zaloguj się</span>
+              <span
+                className={`hidden sm:inline ${
+                  !user && !loading ? "hidden sm:inline" : "hidden"
+                }`}
+              >
+                Zaloguj się
+              </span>
             </button>
             <UserDropdown />
           </div>

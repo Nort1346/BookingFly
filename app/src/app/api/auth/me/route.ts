@@ -33,8 +33,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json(session.userId);
-  } catch (error) {
-    console.error("JWT error:", error);
+  } catch {
     return NextResponse.json({ error: "Invalid token" }, { status: 401 });
   }
 }

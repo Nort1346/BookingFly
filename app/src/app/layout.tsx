@@ -7,6 +7,7 @@ import LoadingCircle from "@/components/LoadingCircle";
 import { Suspense } from "react";
 import { LoginModalProvider } from "@/context/LoginModalContext";
 import { MessageModalProvider } from "@/context/MessageModalContext";
+import { RegisterModalProvider } from "@/context/RegisterModalContext";
 
 connect();
 const geistSans = Geist({
@@ -22,6 +23,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BookingFly",
   description: "An application for booking flights",
+  themeColor: "#000000",
+  icons: ["/icons/icon-128.png", "/icons/icon-256.png", "/icons/icon-512.png"],
 };
 
 export default function RootLayout({
@@ -31,14 +34,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`scrollbar-dark dark`} data-theme="dark">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black text-white`}
       >
         <Suspense fallback={<LoadingCircle visible={true} />}>
           <AuthProvider>
-            <LoginModalProvider>
-              <MessageModalProvider>{children}</MessageModalProvider>
-            </LoginModalProvider>
+            <MessageModalProvider>
+              <RegisterModalProvider>
+                <LoginModalProvider>{children}</LoginModalProvider>
+              </RegisterModalProvider>
+            </MessageModalProvider>
           </AuthProvider>
         </Suspense>
       </body>

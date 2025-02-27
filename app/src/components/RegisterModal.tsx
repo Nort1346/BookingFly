@@ -1,18 +1,19 @@
 "use client";
-import { useAuthContext } from "@/context/AuthContext";
-import { useRegisterModal } from "@/context/RegisterModalContext";
+import { useMessageModal } from "@/context/MessageModalContext";
+import { MessageModalType } from "@/enums/MessageModalType";
 import { ModalProps } from "@/interfaces/ModalProps";
 import { useEffect, useState } from "react";
 
-const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [visible, setVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(isOpen);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { showModal } = useRegisterModal();
-  const { refetch } = useAuthContext();
+  const { showModal } = useMessageModal();
 
   useEffect(() => {
     if (isOpen && !shouldRender) {
@@ -32,13 +33,12 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     setError(null);
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
-        credentials: "include",
+        body: JSON.stringify({ email, password, name, surname }),
       });
 
       if (!response.ok) {
@@ -46,7 +46,11 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         const responseMessage = await data?.error;
         throw new Error(responseMessage);
       }
-      await refetch();
+      showModal(
+        MessageModalType.MESSAGE,
+        "Konto utworzone",
+        "Zaloguj się, aby rozpocząć"
+      );
       onClose();
     } catch (error) {
       setError(error instanceof Error ? error.message : "Error occurred");
@@ -72,9 +76,31 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         }`}
       >
         <h2 className="text-2xl font-extrabold flex justify-center mb-4">
-          Logowanie
+          Rejestracja
         </h2>
         <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="block text-sm font-medium mb-1">Imię</label>
+            <input
+              type="text"
+              className="input"
+              placeholder="Wpisz imię"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label className="block text-sm font-medium mb-1">Nazwisko</label>
+            <input
+              type="text"
+              className="input"
+              placeholder="Wpisz nazwisko"
+              value={surname}
+              onChange={(e) => setSurname(e.target.value)}
+              required
+            />
+          </div>
           <div className="mb-3">
             <label className="block text-sm font-medium mb-1">Email</label>
             <input
@@ -98,17 +124,10 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             />
           </div>
           <button type="submit" className="w-full btn" disabled={loading}>
-            {loading ? "Logowanie..." : "Zaloguj się"}
+            {loading ? "Tworzenie konta..." : "Zapisz się"}
           </button>
           {error && <p className="text-red-500 text-sm my-2">{error}</p>}
         </form>
-        <span className="block mt-3">Nie posiadasz konta?</span>
-        <button
-          onClick={() => {onClose(); showModal();}}
-          className="mt-1 w-full btn h-10 justify-center p-1"
-        >
-          Zarejestruj się
-        </button>
         <button
           onClick={onClose}
           className="mt-4 w-full text-sm text-white hover:text-gray-500"
@@ -120,4 +139,4 @@ const LoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default LoginModal;
+export default RegisterModal;

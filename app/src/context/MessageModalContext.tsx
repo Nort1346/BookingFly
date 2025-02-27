@@ -16,7 +16,7 @@ const MessageModalContext = createContext<MessageModalContextType | undefined>(
 );
 
 export const MessageModalProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [type, setType] = useState(MessageModalType.MESSAGE);
@@ -26,13 +26,13 @@ export const MessageModalProvider = ({ children }: { children: ReactNode }) => {
       setTitle(title);
       setContent(content);
       setType(type);
-      setIsLoginModalOpen(true);
+      setIsMessageModalOpen(true);
     },
     []
   );
 
   const hideModal = useCallback(() => {
-    setIsLoginModalOpen(false);
+    setIsMessageModalOpen(false);
   }, []);
 
   return (
@@ -41,7 +41,7 @@ export const MessageModalProvider = ({ children }: { children: ReactNode }) => {
     >
       {children}
       <MessageModal
-        isOpen={isLoginModalOpen}
+        isOpen={isMessageModalOpen}
         onClose={hideModal}
         title={title}
         content={content}
