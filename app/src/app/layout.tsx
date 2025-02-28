@@ -23,8 +23,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BookingFly",
   description: "An application for booking flights",
-  themeColor: "#000000",
   icons: ["/icons/icon-128.png", "/icons/icon-256.png", "/icons/icon-512.png"],
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -34,10 +34,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`scrollbar-dark dark`} data-theme="dark">
-      <head>
-        <link rel="manifest" href="/manifest.json" />
-      </head>
-
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-black text-white`}
       >
