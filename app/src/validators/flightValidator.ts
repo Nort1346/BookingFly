@@ -1,3 +1,4 @@
+import { LOCATIONS } from "@/constants/locations";
 import Airlines from "@/enums/Airlines";
 import { z } from "zod";
 
@@ -7,8 +8,12 @@ const flightValidator = z.object({
     .refine((val) => Object.values(Airlines).includes(val as Airlines), {
       message: "Invalid airline",
     }),
-  destination: z.string().min(1, "Destination is required"),
-  origin: z.string().min(1, "Origin is required"),
+  destination: z.enum(LOCATIONS, {
+    errorMap: () => ({ message: "Invalid destination" }),
+  }),
+  origin: z.enum(LOCATIONS, {
+    errorMap: () => ({ message: "Invalid origin" }),
+  }),
   departureDate: z.string().refine((date) => !isNaN(new Date(date).getTime()), {
     message: "Invalid departure date",
   }),

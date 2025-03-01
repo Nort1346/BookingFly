@@ -23,7 +23,7 @@ const FlightHistoryItem: React.FC<{
       </div>
 
       <div className="flex flex-row mx-4 ml-0 space-x-4 items-center justify-center md:w-2/5 w-full md:mt-0 mt-6">
-        <div className="font-bold text-lg">{departureDate.toLocaleDateString()} - {arrivalDate.toLocaleDateString()}</div>
+        <div className="font-bold text-lg">{departureDate.toISOString().split('T')[0]} - {arrivalDate.toISOString().split('T')[0]}</div>
       </div>
 
       <div className="flex flex-col ml-0 items-center md:items-start justify-start md:w-2/5 w-full md:mt-0 mt-3 md:mb-0 mb-6">

@@ -1,9 +1,10 @@
+import { Location } from "@/types/Location";
 import { Document } from "mongoose";
 export interface IFlight extends Document {
   flightId: string;
   airline: string;
-  origin: string;
-  destination: string;
+  origin: Location;
+  destination: Location;
   departureTime: Date;
   arrivalTime: Date;
   currency: string;

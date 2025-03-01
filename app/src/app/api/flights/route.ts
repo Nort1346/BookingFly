@@ -30,7 +30,10 @@ export async function GET(request: NextRequest) {
       const endOfDay = new Date(departureDate);
       endOfDay.setHours(23, 59, 59, 999);
 
-      cleanedCriteria.departureTime = { $gte: startOfDay, $lte: endOfDay };
+      cleanedCriteria.departureTime = {
+        $gte: startOfDay,
+        $lte: endOfDay,
+      };
     } else {
       const nowDate = new Date();
       cleanedCriteria.departureTime = { $gt: nowDate };

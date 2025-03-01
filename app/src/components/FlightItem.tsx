@@ -61,7 +61,7 @@ const FlightItem: React.FC<{
       </div>
 
       <div className="w-full md:w-1/5 md:my-0 my-6 flex justify-center">
-        <button className="btn" onClick={onReserveClick}>
+        <button className="btn" onClick={onReserveClick} disabled={new Date() > departureDate}>
           Rezerwuj od{" "}
           <strong>
             {flightData.economyClass.economy.price} {flightData.currency}

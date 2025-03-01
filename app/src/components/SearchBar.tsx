@@ -1,4 +1,5 @@
 "use client";
+import { LOCATIONS } from "@/constants/locations";
 import { SearchFlightData } from "@/types/SearchFlightData";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
@@ -42,10 +43,10 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
     router.push(`/flights?${queryParams.toString()}`);
   };
 
-  const options = [
-    { value: "New York", label: "New York" },
-    { value: "London", label: "London" },
-  ];
+  const options = LOCATIONS.map((location) => ({
+    value: location,
+    label: location,
+  }));
 
   return (
     <>
@@ -109,6 +110,7 @@ const SearchBar: React.FC<{ searchFlightData?: SearchFlightData | null }> = ({
             type="date"
             ref={departureDateRef}
             name="startDate"
+            min={new Date().toISOString().split("T")[0]}
             className="py-3 px-4 block w-full shadow-sm rounded-md text-sm relative focus:z-10 focus:border-blue-500 disabled:opacity-50 disabled:pointer-events-none bg-neutral-800 border-neutral-700 text-neutral-400 placeholder-neutral-500 focus:ring-neutral-600"
           />
         </div>
