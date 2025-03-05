@@ -12,6 +12,12 @@ const Form: React.FC = () => {
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const resetForm = () => {
+    setTitle("");
+    setEmail("");
+    setMessage("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -38,6 +44,8 @@ const Form: React.FC = () => {
         "Błąd",
         "Coś poszło nie tak, spróbuj ponownie później"
       );
+    } finally {
+      resetForm();
     }
   };
 
