@@ -94,7 +94,7 @@ const Checkout: React.FC = () => {
                   {flight?.origin.toString()}
                 </div>
                 <div className="font-extrabold text-xl text-blue-500 text-center">
-                  {flight?.departureTime.toLocaleTimeString()}
+                  {flight?.departureTime.toISOString().slice(11, 16)}
                 </div>
               </div>
 
@@ -103,7 +103,7 @@ const Checkout: React.FC = () => {
                   {flight?.destination.toString()}
                 </div>
                 <div className="font-extrabold text-xl text-blue-500 text-center">
-                  {flight?.arrivalTime.toLocaleTimeString()}
+                  {flight?.arrivalTime.toISOString().slice(11, 16)}
                 </div>
               </div>
             </div>

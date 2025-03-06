@@ -12,7 +12,7 @@ const Header: React.FC = () => {
         quality={100}
         className="absolute inset-0 z-0 object-cover"
       />
-      <div className="absolute inset-0 bg-black opacity-70"></div>
+      <div className="absolute inset-0 backdrop-brightness-50 backdrop-opacity-65 backdrop-blur-sm"></div>
       <div className="container mx-auto flex flex-col justify-center items-center p-4 relative z-10 text-center h-full">
         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
           Mamy najlepsze oferty lotów
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
               strokeWidth="2"
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
-          </svg>{" "}
+          </svg>
         </Link>
       </div>
     </header>
