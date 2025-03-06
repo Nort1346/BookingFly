@@ -49,7 +49,8 @@ const Flights: React.FC = () => {
         method: "GET",
       });
       const data = await response?.json();
-      if (data) setFlights(data);
+      if (data && response.ok) setFlights(data);
+      else setFlights([]);
     };
 
     fetchFlights();

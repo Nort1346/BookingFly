@@ -1,11 +1,11 @@
 {
   "name": "bookingfly",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "authors": [
     {
       "name": "Norbert Baczuń",
-      "url": "https://nortbot.info"
+      "url": "https://nort.space"
     },
     {
       "name": "Miłosz Dudek"

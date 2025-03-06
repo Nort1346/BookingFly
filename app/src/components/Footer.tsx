@@ -15,32 +15,23 @@ const Footer: React.FC = () => {
         <span>Adres: 1234 Main St, Austin, Texas 78701</span>
       </div>
       <div className="flex flex-col justify-center text-center md:w-1/3">
-        <span className="font-bold">Social Media</span>
+        <span className="font-bold">Autorzy</span>
         <span>
           <a
-            href="https://facebook.com/bookingfly"
+            href="https://github.com/Nort1346"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Facebook
+            Nort1346
           </a>
         </span>
         <span>
           <a
-            href="https://twitter.com/bookingfly"
+            href="https://github.com/Monnnkey"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Twitter
-          </a>
-        </span>
-        <span>
-          <a
-            href="https://linkedin.com/company/bookingfly"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
+            Monnnkey
           </a>
         </span>
       </div>
